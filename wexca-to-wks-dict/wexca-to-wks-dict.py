@@ -19,20 +19,17 @@ writer.writerow(['lemma', 'poscode', 'surface'])
 
 for count, row in enumerate(reader):
   if count > 0:
-    output = []
-
     parts = row[0].split('\f');
-    terms = map( lambda x: x.split('\t')[0].strip(),  parts )
-    normalized = map( lambda y: y if acronym.match(y) else y.lower(), terms )
+    terms = map(lambda x: x.split('\t')[0].strip(),  parts)
+    normalized = map(lambda y: y if acronym.match(y) else y.lower(), terms)
 
     lemma = normalized[0]
     surfaceforms = set(normalized)
 
-    output.append( lemma )
-    output.append( 3 )  # pos code, noun
+    output = [lemma, 3]  # pos code, noun
 
     for surfaceform in surfaceforms:
-      if len( surfaceform ) > 0:
-        output.append( surfaceform )
+      if len(surfaceform) > 0:
+        output.append(surfaceform)
 
-    writer.writerow( output )
+    writer.writerow(output)
