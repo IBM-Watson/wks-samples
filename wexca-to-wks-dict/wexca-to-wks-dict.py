@@ -20,7 +20,7 @@ writer.writerow(['lemma', 'poscode', 'surface'])
 for count, row in enumerate(reader):
   if count > 0:
     parts = row[0].split('\f');
-    terms = map(lambda x: x.split('\t')[0].strip(),  parts)
+    terms = map(lambda x: x.split('\t')[0].strip(), parts)
     normalized = map(lambda y: y if acronym.match(y) else y.lower(), terms)
 
     lemma = normalized[0]
